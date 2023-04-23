@@ -1,0 +1,67 @@
+import hashlib
+import csv
+from flask import Flask, render_template, request
+import pandas as pd
+
+app = Flask(__name__)
+
+@app.route('/', methods=['GET'])
+def index():
+    return render_template('base.html')
+
+@app.route('/loginsignup', methods=['GET'])
+def loginsignup():
+    return render_template('loginsignup.html')
+
+
+
+@app.route('/loginsignup')
+def signup():
+    email1 = request.form['email1']
+    username = request.form['username']
+    password = request.form['password']
+    confirm_pass = request.form['confirm_pass']
+
+    if confirm_pass == password:
+        enc = confirm_pass.encode()
+        hashpass = hashlib.md5(enc).hexdigest()
+        with open("logins.csv", newline="", mode = "a") as loginfile:
+            login_writer = csv.writer(loginfile, delimiter=',', quotechar='"', quoting=csv.QUOTE_MINIMAL)
+            login_writer.writerow([email1, hashpass, username])
+        print("Thank you for registering with Roam")
+        return render_template("base.html")
+    else:
+        print("Passwords do not match")
+    
+    
+
+if __name__ == "__main__":
+    email1 = input("Enter email: ")
+    username = input("Enter a username: ")
+    password = input("Enter password: ")
+    confirm_pass = input("Please confirm password: ")
+    signup(email1, username, password, confirm_pass)
+    app.run(host="127.0.0.1", port=8080, debug=True)
+
+
+def login(username, email, password):
+    email1 = request.form['email1']
+    username = request.form['username']
+    password = request.form['password']
+    
+    authenticate = password.encode()
+    auth_hash = hashlib.md5(authenticate).hexdigest()
+    user_pass = [email, auth_hash, username]
+    with open("logins.csv") as f:
+        reader = csv.reader(f)
+        for row in reader:
+            if row == user_pass:
+                login1 = True
+                
+            else: 
+                login1 = False
+        if login1 == True:
+            print("Welcome")
+        elif login1 == False:
+            print("Wrong password, username, or email")
+

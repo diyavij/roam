@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>LAHacks23</title>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link
+      rel="stylesheet" 
+      href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap"
+      rel="stylesheet"
+    />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/typed.js/2.0.12/typed.min.js"></script>
+
+
+    <style>
+      body {
+        font-family: "Open Sans", sans-serif;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Navbar section -->
+    <nav
+      class="navbar is-fixed-top is-warning"
+      role="navigation"
+      aria-label="main navigation"
+    >
+      <div class="navbar-brand">
+        <a class="navbar-item" href="/"> 
+        </a>
+        <a
+          role="button"
+          class="navbar-burger"
+          aria-label="menu"
+          aria-expanded="false"
+          data-target="navbarLinks"
+        >
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+        </a>
+      </div>
+      <div class="navbar-menu" id="navbarLinks">
+        <div class="navbar-end">
+          <a class="navbar-item" href="/">Home</a>
+          <a class="navbar-item" href="/aboutus">About Us</a>
+          <a class="navbar-item" href="/locations">Locations</a>
+          <a class="navbar-item" href="/loginsignup">Log-In/Sign-Up</a>
+
+        </div>
+      </div>
+    </nav>
+
+    <!-- Banner section -->
+    <section class="hero is-fullheight is-warning">
+      <div class="hero-body">
+        <div class="container">
+          <div class="columns is-vcentered">
+            <div class="column">
+              <h1
+                class="title"
+                id="titletext"
+                style="display: inline; font-weight: bold; font-size: 3rem"
+              ></h1>
+              
+              <div class="block"></div>
+              <button class="button is-link is-light" onclick="scrollToDiv();">
+                Explore your next solo adventure!
+              </button>
+            </div>
+            <div class="column has-text-centered">
+              <div class="">
+                <img
+                  src="https://cdn.pixabay.com/photo/2014/04/03/11/48/map-312213_1280.png"
+                  width="350rem"
+                  alt="Map image"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Second section -->
+
+    <section class="section hero is-fullheight" id="1">
+      <div class="hero-body">
+        <div class="container">
+          <form action="/submit" method="POST">
+            <label class="heading1"><bold><center>Subscribe to our newsletter!</center><bold></bold></center></label></label>
+
+            <div class="field">
+              <label class="label">First Name</label>
+              <div class="control">
+                <input
+                  class="input"
+                  type="text"
+                  id="fname"
+                  name="fname"
+                  placeholder="Jane"
+                />
+              </div>
+            </div>
+
+            <div class="field">
+              <label class="label">Last Name</label>
+              <div class="control">
+                <input
+                  class="input"
+                  type="text"
+                  id="lname"
+                  name="lname"
+                  placeholder="Doe"
+                />
+              </div>
+            </div>
+
+            <div class="field">
+              <label class="label">Email</label>
+              <div class="control">
+                <input
+                  class="input"
+                  type="text"
+                  id="email"
+                  name="email"
+                  placeholder="example@example.com"
+                />
+              </div>
+            </div>
+
+           
+
+
+            <button class="button is-link" type="submit">Subscribe</button>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <script>
+      // Toggle the navbar burger menu on small screens
+      document.addEventListener("DOMContentLoaded", () => {
+        const $navbarBurgers = Array.prototype.slice.call(
+          document.querySelectorAll(".navbar-burger"),
+          0
+        );
+        if ($navbarBurgers.length > 0) {
+          $navbarBurgers.forEach((el) => {
+            el.addEventListener("click", () => {
+              const target = el.dataset.target;
+              const $target = document.getElementById(target);
+              el.classList.toggle("is-active");
+              $target.classList.toggle("is-active");
+            });
+          });
+        }
+      });
+
+      function scrollToDiv() {
+        var div = document.getElementById("1");
+        div.scrollIntoView({ behavior: "smooth" });
+      }
+
+      var options = {
+        strings: ["SAFE.", "SOLO.","SOCIAL.","SAIL AWAY.","SIGHTSEE.","STEP OUT OF YOUR COMFORT ZONE.", "When in Roam"],
+        typeSpeed: 50,
+        backSpeed: 50,
+        loop: true,
+        shuffle: true
+      };
+
+      var typed = new Typed("#titletext", options);
+    </script>
+  </body>
+</html>
