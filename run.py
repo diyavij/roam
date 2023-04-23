@@ -9,9 +9,9 @@ app = Flask(__name__)
 def index():
     return render_template('base.html')
 
-@app.route('/locations')
-def locations():
-  return render_template("locations.html")
+@app.route('/places')
+def places():
+  return render_template("places.html")
 
 @app.route('/aboutus')
 def aboutus():
